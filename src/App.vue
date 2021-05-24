@@ -1,19 +1,48 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link :to="{ name: 'Home' }">Home</router-link> |
-      <router-link :to="{ name: 'About' }">About</router-link> |
-      <router-link :to="{ name: 'Page1' }">Page 1</router-link> |
-      <router-link :to="{ name: 'Page2' }">Page 2</router-link> |
-      <router-link :to="{ name: 'Page3' }">Page 3</router-link> 
-    </div>
-    <router-view/>
+    <v-navigation-drawer app permanent>
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title class="title">
+            Application
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+      <v-divider></v-divider>
+      <v-list dense nav>
+        <router-link
+        v-for="item in pages"
+        :key="item.name"
+        :to="{ name: item.name }">
+          <v-list-item link>
+              <v-list-item-content>
+                <v-list-item-title>
+                    {{ item.name }}
+                </v-list-item-title>
+              </v-list-item-content>
+          </v-list-item>
+        </router-link>
+      </v-list>
+    </v-navigation-drawer>
+
+    <v-main>
+      <router-view/>
+    </v-main>
   </div>
 </template>
 <script>
-
 export default ({
-  
+  data() {
+    return {
+      pages: [
+        { name: 'Home' },
+        { name: 'About' },
+        { name: 'Page1' },
+        { name: 'Page2' },
+        { name: 'Page3' }
+      ]
+    }
+  }
 })
 </script>
 

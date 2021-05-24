@@ -8,6 +8,9 @@ const routes = [
   {
     path: '/',
     name: 'Home',
+    props: {
+      title: 'Home',
+    },
     component: Home
   },
   {
